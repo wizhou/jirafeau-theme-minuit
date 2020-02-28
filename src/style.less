@@ -1,6 +1,8 @@
-@import (css) 'https://fonts.googleapis.com/css?family=IBM+Plex+Mono:300,300i,400,400i,700,700i&amp;subset=latin-ext';
-
+/*----------- Typography -----------*/
+@import 'fonts/ibm-plex-mono';
+/*----------- Framework -----------*/
 @import (reference) 'coeur-de-fer/mainscourtes';
+@import 'coeur-de-fer/reset';
 
 @color: #212223;
 @back : #272632;
@@ -79,7 +81,6 @@ body {
 	margin: 0;
 }
 
-
 a {
 	color: #333;
 	border-bottom: 2px solid @filet;
@@ -118,27 +119,27 @@ input[type="submit"] {
 }
 
 div#content {
-	position: relative;
 	background-color: white;
-	border-radius: 5px;
+	border-radius: 0.2em;
 	max-width: 720px;
+	position: relative;
 	width: 100%;
 	margin: auto;
 
 	* { box-sizing: border-box; }
 
 	h1 {
-		font-size: 1em;
+		border-radius: 0em;
+		border-top-left-radius: 0.2em;
+		border-top-right-radius: 0.2em;
 		color: white;
+		font-size: 1em;
 		font-weight: 400;
-		margin-top: 0;
+		margin-top: 0px;
 		margin-bottom: 1em;
 		font-style: italic;
 		padding: 1em;
 		background-color: @hue;
-		border-radius: 0;
-		border-top-left-radius: 5px;
-		border-top-right-radius: 5px;
 
 		a {
 			color: @back-lighten;
