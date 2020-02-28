@@ -1,0 +1,21 @@
+{
+  "name": "wizhou.minuit.jirafeau",
+  "version": "1.1.0",
+  "description": "theme for jirafeau",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel watch src/style.less --cache-dir src/.cache --out-dir dist",
+    "build": "parcel build src/style.less --no-source-maps --cache-dir src/.cache --out-dir dist"
+  },
+  "keywords": [
+    "jirafeau",
+    "less",
+    "theme"
+  ],
+  "author": "wizhou",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "less": "^3.11.1"
+  }
+}

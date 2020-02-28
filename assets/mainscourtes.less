@@ -1,0 +1,586 @@
+/*                _                                _              _                 */
+/*    /\/\   __ _(_)_ __  ___  ___ ___  _   _ _ __| |_ ___  ___  | | ___  ___ ___   */
+/*   /    \ / _` | | '_ \/ __|/ __/ _ \| | | | '__| __/ _ \/ __| | |/ _ \/ __/ __|  */
+/*  / /\/\ \ (_| | | | | \__ \ (_| (_) | |_| | |  | ||  __/\__ \_| |  __/\__ \__ \  */
+/*  \/    \/\__,_|_|_| |_|___/\___\___/ \__,_|_|   \__\___||___(_)_|\___||___/___/  */
+/*                                                                                  */
+
+/**
+ * Description: Mainscourtes ! La feuille magique qui regroupe tous les déclinaisons vendeurs de navigateurs !
+ *
+ * Version : 3.1
+ * Last update: 2018/12/22
+ * Author: Wizhou
+ */
+
+
+
+ /* ==========================================================================
+    LESS
+    ========================================================================== */
+
+
+
+
+
+/* ==========================================================================
+   X. Flexing
+   ========================================================================== */
+
+.fullSize() {
+	height: 100%;
+	width: 100%;
+}
+
+/* Display */
+
+.display-flex() {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.displayFlex() {
+	/* old version // compatibility */
+	.display-flex();
+}
+
+/* Content */
+
+.flex-direction ( @direction: column ) {
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: @direction;
+	-ms-flex-direction: @direction;
+	flex-direction: @direction;
+}
+
+.flex-wrap ( @wrap: wrap ) {
+	-webkit-flex-wrap:	@wrap;
+	-ms-flex-wrap:	@wrap;
+	flex-wrap:	@wrap
+}
+
+/* old version // compatibility */
+.flexWrap (@wrap: wrap ) { .flex-wrap( @wrap ); }
+.flexNoWrap() { .flex-wrap( nowrap ); }
+
+.flex-flow ( @direction, @wrap ) {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-flow: @arguments;
+	-moz-box-orient: horizontal;
+	-moz-box-direction: normal;
+	-ms-flex-flow: @arguments;
+	flex-flow: @arguments;
+}
+
+.align-content ( @center: center ) {
+	-webkit-align-content: @center;
+	-ms-flex-line-pack: @center;
+	align-content: @center;
+}
+
+.align-items ( @align: center ) {
+	-webkit-box-align: @align;
+	-webkit-align-items: @align;
+	-moz-box-align: @align;
+	-ms-flex-align: @align;
+	align-items: @align
+}
+
+.justify-content ( @justify: center ) {
+	-webkit-box-pack: @justify;
+	-webkit-justify-content: @justify;
+	-moz-box-pack: @justify;
+	-ms-flex-pack: @justify;
+	justify-content: @justify
+}
+
+/* items */
+
+.order ( @number ) {
+	-webkit-box-ordinal-group: @number;
+	-webkit-order: @number;
+	-moz-box-ordinal-group: @number;
+	-ms-flex-order: @number;
+	order: @number;
+}
+
+.flex-grow ( @number ) {
+	-webkit-box-flex: @number;
+	-webkit-flex-grow: @number;
+	-ms-flex-positive: @number;
+	flex-grow: @number;
+}
+
+.flex-shrink ( @number ) {
+	-webkit-flex-shrink: @number;
+	-ms-flex-negative: @number;
+	flex-shrink: @number;
+}
+
+.align-self ( @align: center ) {
+	-webkit-align-self: @align;
+	-ms-flex-item-align: @align;
+	-ms-grid-row-align: @align;
+	align-self: @align;
+}
+
+.justify-self ( @center: center ) {
+	-ms-grid-column-align: @center;
+	justify-self: @center;
+}
+
+/* Mainscourtes ! */
+
+/* display en flex, avec le maximum de paramètres.
+@wrap :		Permet d'activer le flew-wrap.
+			Réponses valables : nowrap | wrap | wrap-reverse.
+			Pour laisser null : 0.
+
+@direction: Permet d'activer flex-direction.
+			Réponses valables : row | row-reverse | column | column-reverse.
+			Pour laisser null : 0.
+
+@align : 	Permet de positionner les éléments en abscisse.
+			Réponses valables : flex-start | flex-end | center | baseline | stretch.
+			Pour laisser null : 0.
+
+@justify:	Permet de positionner les éléments en ordonées
+			Réponses valables : flex-start | flex-end | center | space-between | space-around | space-evenly.
+			Pour laisser null : 0.
+;*/
+
+.flex( @wrap : 0, @direction : 0, @align-items : 0, @justify : 0, @align-content : 0 ) {
+	.display-flex();
+
+	& when ( iskeyword( @wrap ) ) {
+		.flex-wrap( @wrap );
+	}
+
+	& when ( iskeyword( @direction ) ) {
+		.flex-direction( @direction );
+	}
+
+	& when ( iskeyword( @align-items ) ) {
+		.align-items( @align-items );
+	}
+
+	& when ( iskeyword( @justify ) ) {
+		.justify-content( @justify );
+	}
+
+	& when ( iskeyword( @align-content ) ) {
+		.align-items( @align-content );
+	}
+}
+
+.centered( @wrap : 0, @direction : 0, @align-content : 0 ) {
+	.flex( @wrap, @direction, center, center, @align-content);
+}
+
+.baselined( @wrap : 0, @direction : 0, @align-content : 0 ) {
+	.flex( @wrap, @direction, center, baseline, @align-content);
+}
+
+.fluid( @wrap : 0, @direction : 0 ) {
+	.flex( @wrap, @direction, normal, normal, normal);
+}
+
+/*=============================================>>>>>
+= GRID =
+===============================================>>>>>*/
+
+/* Utilisé pour générer un ensemble de colonnes
+Ajoute des gap si ajoutés. */
+
+.generate-columns( @name, @total, @halfgap: false, @i: 1 ) when ( @i =< @total ) {
+
+	.@{name}@{i} {
+		width: ( @i * 100% / @total );
+
+		& when ( isnumber( @halfgap ) ) {
+			padding-left: @halfgap;
+			padding-right: @halfgap;
+		}
+	}
+	.generate-columns( @name, @total, @halfgap, ( @i + 1 ) );
+}
+
+/* Permet de positionner un élément indépendant comme une colonne.
+@total :	Le nombre total de colonnes.
+
+@base:		La base sur laquelle positionner l'élément
+
+@left: 		Inscrire un nombre pour positionner
+			l'élément via une margin left.
+
+@right:		Inscrire un nombre pour positionner
+			l'élément via une margin right.
+
+@halfgap: 	Inscrire si des gaps sont utilisés dans le système de grille.
+
+;*/
+
+.column-self( @total, @base, @left: false, @right: false, @halfgap: false )
+	when ( @base <= @total ) {
+
+	width: ( @base * 100% / @total );
+
+	& when ( isnumber( @left ) ) {
+		margin-left: ( @left * 100% / @total );
+	}
+
+	& when ( isnumber( @right ) ) {
+		margin-right: ( @right * 100% / @total );
+	}
+
+	& when ( isnumber( @halfgap ) ) {
+		padding-left: @halfgap;
+		padding-right: @halfgap;
+	}
+}
+
+/* Construit la classe shell de .section.
+@total :	Le padding de base des section.
+@base:		L'élément media actuellement en usage
+;*/
+
+.section( @base-pading, @media : desktop ) {
+	.section {
+		& when ( @media = desktop ) {
+			padding: ( @base-pading ) 0;
+		}
+
+		& when ( @media = tablet ) {
+			padding: ( @base-pading / 1.5 ) 0;
+		}
+
+		& when ( @media = mobile ) {
+			padding: ( @base-pading / 2 ) 0;
+		}
+	}
+}
+
+/* Construit les classes shell de .flow et .wrap.
+Le flow centre un contenu selon la taille maximale
+utilisée. Le wrap permet d'employer le flex.
+
+@max-width :	La taille maximale en usage.
+;*/
+
+.flow ( @max-width: 960px ) {
+	.flow {
+		width: 100%;
+		max-width: @max-width;
+		margin: auto;
+
+		.wrap { .flex( wrap, row, center, center ); }
+
+		* { box-sizing: border-box; }
+	}
+}
+
+
+/*=============================================>>>>>
+= Gestion typographique =
+===============================================>>>>>*/
+
+/*=============================================>>>>>
+= 1 . Colonnes =
+===============================================>>>>>*/
+
+.column-count( @number ) when ( isnumber( @number ) ) {
+	-webkit-column-count: @number;
+	-moz-column-count: @number;
+	column-count: @number;
+}
+
+.column-gap( @gap ) when ( isnumber( @gap ) ) {
+	-webkit-column-gap: @gap;
+	-moz-column-gap: @gap;
+	column-gap: @gap;
+}
+
+.column-rules( @arguments ) {
+	-webkit-column-rule: @arguments;
+	-moz-column-rule: @arguments;
+	column-rule: @arguments;
+}
+
+.column-width( @width ) when ( isnumber( @width ) ) {
+	-webkit-column-width: @width;
+	-moz-column-width: @width;
+	column-width: @width;
+}
+
+.column-span( @span ) {
+	-webkit-column-span: @span;
+	column-span: @span;
+}
+
+.column( @number, @width: false, @gap : false, @rules : false, @rulesoptions) {
+	.column-count( @number );
+	& when ( isnumber( @width ) ) { .column-width( @width ); }
+	& when ( isnumber( @gap ) ) { .column-gap( @gap ); }
+	& when ( @rules ) { .column-rules( @rulesoptions ); }
+}
+
+.break-after( @avoid ) {
+	 -webkit-column-break-after: @avoid;
+	break-after: @avoid;
+}
+
+/*= End of 1 . Colonnes =*/
+/*=============================================<<<<<*/
+
+
+.text-shadow (@string: 10px 10px 0px turquoise) {
+   	text-shadow: @string;
+}
+
+.hyphens(@auto : auto) {
+	-webkit-hyphens:@auto;
+	-moz-hyphens:@auto;
+	-ms-hyphens:@auto;
+	hyphens:@auto
+}
+
+.orphan(@orphan) {
+	-webkit-orphans: @orphan;
+	-moz-orphans: @orphan;
+	-ms-orphans: @orphan;
+	-o-orphans: @orphan;
+	orphans: @orphan;
+}
+
+.widows(@widows) {
+	-webkit-widows: @widows;
+	-moz-widows: @widows;
+	-ms-widows: @widows;
+	-o-widows: @widows;
+	widows: @widows;
+}
+
+.font-variant( @type, @key ) {
+	-webkit-font-variant-@{type}: @key;
+	-moz-font-variant-@{type}: @key;
+	-ms-font-variant-@{type}: @key;
+	-o-font-variant-@{type}: @key;
+	font-variant-@{type}: @key;
+}
+
+.font-variant-ligatures( @key ) {
+	.font-variant( ligatures, @key );
+}
+
+.font-feature-settings(@ffs) {
+	-webkit-font-feature-settings: @ffs;
+	-moz-font-feature-settings: @ffs;
+	-ms-font-feature-settings: @ffs;
+	-o-font-feature-settings: @ffs;
+	font-feature-settings: @ffs;
+}
+
+.font-smoothing() {
+	text-rendering: geometricPrecision;
+	-o-text-rendering: geometricPrecision;
+	-moz-text-rendering: geometricPrecision;
+	-webkit-text-rendering: geometricPrecision;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+/*= End of Gestion typographique =*/
+/*=============================================<<<<<*/
+
+
+
+
+
+/*=============================================>>>>>
+= CSS Effects =
+===============================================>>>>>*/
+
+.transition( @transition ) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-ms-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+}
+
+.opacity( @opacity: 0.5 )
+	when ( isnumber( @opacity ) ) {
+
+	-webkit-opacity: @opacity;
+	-moz-opacity: @opacity;
+	-ms-opacity: @opacity;
+	-o-opacity: @opacity;
+	opacity: @opacity;
+}
+
+.transform( @transform ) {
+	-webkit-transform: ( @transform );
+	-moz-transform: ( @transform );
+	-ms-transform: ( @transform );
+	-o-transform: ( @transform );
+	transform: ( @transform );
+}
+
+.matrix ( @numbers ) { .transform( matrix( @numbers ) ); }
+.matrix3d ( @numbers ) { .transform( matrix3d( @numbers ) ); }
+
+.translate ( @x, @y ) { .transform( translate( @x, @y ) ); }
+.translateX ( @x ) { .transform( translateX( @x ) ); }
+.translateY ( @y ) { .transform( translateY( @y ) ); }
+.translateZ ( @z ) { .transform( translateZ( @z ) ); }
+.translate3d ( @x, @y, @z ) { .transform( translate3d( @arguments ) ); }
+
+.scale ( @x, @y ) { .transform( scale( @x, @y ) ); }
+.scaleX ( @x ) { .transform( scaleX( @x ) ); }
+.scaleY ( @y ) { .transform( scaleY( @y ) ); }
+.scaleZ ( @z ) { .transform( scaleZ( @z ) ); }
+.scale3d ( @x, @y, @z ) { .transform( scaleZ( @arguments ) ); }
+
+.rotate (@deg) { .transform( rotate( @deg ) ); }
+.rotateX ( @x ) { .transform( rotateX( @x ) ); }
+.rotateY ( @y ) { .transform( rotateY( @y ) ); }
+.rotateZ ( @z ) { .transform( rotateZ( @z ) ); }
+.rotate3d ( @x, @y, @z, @deg ) { .transform( rotate3d( @arguments ) ); }
+
+.skew ( @x, @y ) { .transform( skew( @x, @y ) ); }
+.skewX ( @x ) { .transform( skewX( @x ) ); }
+.skewY ( @y ) { .transform( skewY( @y ) ); }
+
+.perspective ( @num ) { .transform( perspective( @num ) ); }
+
+.transform-origin (@org) {
+	/* x-offset | y-offset | z-offset */
+	-webkit-transform-origin:  (@org);
+	   -moz-transform-origin:  (@org);
+		-ms-transform-origin:  (@org);
+		 -o-transform-origin:  (@org);
+			transform-origin:  (@org);
+}
+
+
+
+
+/*= End of CSS Effects =*/
+/*=============================================<<<<<*/
+
+/*=============================================>>>>>
+= Forms =
+===============================================>>>>>*/
+
+.placeholder(@rules) {
+
+	&::-webkit-input-placeholder {
+		@rules();
+	}
+	&:-moz-placeholder {
+		@rules();
+	}
+	&::-moz-placeholder {
+		@rules();
+	}
+	&:-ms-input-placeholder {
+		@rules();
+	}
+}
+
+/*----------- Range -----------*/
+
+/* Basé sur le travail de  Daniel Stern
+CF: https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+
+.range(@class, @main, @mainFocus, @thumb, @track, @trackFocus ) {
+	input[type=range].@{class} { -webkit-appearance: none; @main(); }
+	input[type=range].@{class}:focus { outline: none; @mainFocus(); }
+
+	input[type=range].@{class}::-webkit-slider-thumb {
+		-webkit-appearance: none; @thumb(); }
+	input[type=range].@{class}::-moz-range-thumb { @thumb(); }
+	input[type=range].@{class}::-ms-thumb { @thumb(); }
+
+	input[type=range].@{class}::-webkit-slider-runnable-track { @track(); }
+	input[type=range].@{class}::-moz-range-track { @track(); }
+	input[type=range].@{class}::-ms-track { @track(); }
+	input[type=range].@{class}::-ms-fill-lower { @track(); }
+	input[type=range].@{class}::-ms-fill-upper { @track(); }
+
+	input[type=range].@{class}:focus::-webkit-slider-runnable-track { @trackFocus(); }
+	input[type=range].@{class}:focus::-ms-fill-lower { @trackFocus(); }
+	input[type=range].@{class}:focus::-ms-fill-upper { @trackFocus(); }
+}
+
+
+/*= End of Forms =*/
+/*=============================================<<<<<*/
+
+
+/* ==========================================================================
+   X. Box Styling
+   ========================================================================== */
+
+.gradient( @type, @colors, @dir ) {
+	background: ~'-webkit-@{type}-gradient(@{dir}, @{colors})';
+	background:    ~'-moz-@{type}-gradient(@{dir}, @{colors})';
+	background:     ~'-ms-@{type}-gradient(@{dir}, @{colors})';
+	background:      ~'-o-@{type}-gradient(@{dir}, @{colors})';
+	background:        ~' @{type}-gradient(@{dir}, @{colors})';
+}
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow:    @string;
+	box-shadow:         @string;
+}
+
+/*=============================================>>>>>
+= CSS Filter =
+===============================================>>>>>*/
+
+.filter(@filter) {
+	-webkit-filter: (@filter);
+	-moz-filter: (@filter);
+	-ms-filter: (@filter);
+	-o-filter: (@filter);
+	filter: (@filter);
+}
+
+.grayscale( @num: 1px ) { .filter( grayscale( @num ) ); }
+.blur( @num: 1 ) { .filter( blur( @num ) ); }
+.brightness( @num: 1 ) { .filter( brightness( @num ) ); }
+.contrast( @num: 100% ) { .filter( contrast( @num ) ); }
+.drop-shadow( @x, @y, @z, @color ) { .filter( drop-shadow( @arguments ) ); }
+.grayscale( @num: 100% ) { .filter( grayscale( @num ) ); }
+.hue-rotate( @num: 1 ) { .filter( hue-rotate( @num ) ); }
+.invert( @num: 100% ) { .filter( invert( @num ) ); }
+.opacityFilter( @num: 100% ) { .filter( opacity( @num ) ); }
+.saturate( @num: 100% ) { .filter( saturate( @num ) ); }
+.sepia( @num: 100% ) { .filter( sepia( @num ) ); }
+
+/*= End of CSS Filter =*/
+/*=============================================<<<<<*/
+
+/*=============================================>>>>>
+= CSS Animation =
+===============================================>>>>>*/
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	-ms-animation: @arguments;
+	-o-animation: @arguments;
+	animation: @arguments;
+}
+
+/*= End of CSS Animation =*/
+/*=============================================<<<<<*/

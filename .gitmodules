@@ -1,0 +1,3 @@
+[submodule "src/coeur-de-fer"]
+	path = src/coeur-de-fer
+	url = https://github.com/wizhou/coeur-de-fer.git
