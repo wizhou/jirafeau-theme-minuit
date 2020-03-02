@@ -60,7 +60,7 @@ Then, **Jirafeau** will automatically link the theme file `style.css.php` as the
 
 ### For developpement / Configuration
 
-Note that the theme use the slim Less Library [Coeur-de-fer] as a **submodule**. It is not needed if you only use the theme as it in Jirafeau, but it will be if you want to configure or modify the theme.
+Note that the theme use the slim Less Library [Coeur-de-fer]https://github.com/wizhou/coeur-de-fer) as a **submodule**. It is not needed if you only use the theme as it in Jirafeau, but it will be if you want to configure or modify the theme.
 
 The fastest way to get the library is to tell git to load the submodule when cloning the project.
 
@@ -184,7 +184,7 @@ You may play with these definitions. Right now there is still a lot of hardcoded
 
 **Minuit** theme is written in [Less](http://lesscss.org/) in 3.11.1. It uses [Parcel](https://parceljs.org/) as a compiler and a **CSS** minifier, and [npm](https://www.npmjs.com/) to make it run. However, this setup is more a comfort than a need for the project. You can use any LESS compiler you like to build the theme.
 
-The theme also use the slim LESS library [coeur-de-fer](https://github.com/wizhou/coeur-de-fer), with helpers functions and vendors support mixins, as well as a browser reset sheet. It's included as submodule of the project. You will need to load the submodule in order to build the theme. If you havn't alreay, steps to do so are explained in the [Intstallation](#for-developpement--configuration) section.
+The theme also use the slim LESS library [coeur-de-fer](https://github.com/wizhou/coeur-de-fer), with helpers functions and vendors support mixins, as well as a browser reset sheet. It's included as submodule of the project. You will need to load the submodule in order to build the theme. Steps to do so are explained in the [Intstallation](#for-developpement--configuration) section.
 
 ### With npm and Parcel
 
