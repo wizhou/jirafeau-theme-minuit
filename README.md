@@ -276,7 +276,7 @@ This theme doesn't change anything to **Jirafeau** software (outside of the mobi
 
 ## Licenses
 
-- **This project** is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/).
+- **This project** is licensed under [GNU General Public License](https://www.gnu.org/licenses/).
 - **Jirafeau** is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/).
 - **Feather** is licensed under the [MIT License](https://github.com/colebemis/feather/blob/master/LICENSE).
 - **IBM Plex** is licensed under the [SIL Open Font License](http://scripts.sil.org/OFL).
