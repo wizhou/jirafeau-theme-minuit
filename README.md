@@ -58,6 +58,27 @@ $cfg = array (
 
 Then, **Jirafeau** will automatically link the theme file `style.css.php` as the main stylesheet of your installation.
 
+### For developpement / Configuration
+
+Note that the theme use the slim Less Library [Coeur-de-fer] as a **submodule**. It is not needed if you only use the theme as it in Jirafeau, but it will be if you want to configure or modify the theme.
+
+The fastest way to get the library is to tell git to load the submodule when cloning the project.
+
+````
+cd <your jirafeau path>
+git clone --recurse-submodules https://github.com/wizhou/jirafeau-theme-minuit.git media/minuit
+````
+
+If you have already cloned the project and want to load the submodule, you must run two commands:
+
+````
+cd <your jirafeau path>/media/minuit
+git submodule init
+git submodule update
+````
+
+This will tell git to initialize your local configuration file, fetch all the data from **Coeur-de-fer** and check out the appropriate commit listed in the project.
+
 
 ## Configuration
 
@@ -163,7 +184,9 @@ You may play with these definitions. Right now there is still a lot of hardcoded
 
 **Minuit** theme is written in [Less](http://lesscss.org/) in 3.11.1. It uses [Parcel](https://parceljs.org/) as a compiler and a **CSS** minifier, and [npm](https://www.npmjs.com/) to make it run. However, this setup is more a comfort than a need for the project. You can use any LESS compiler you like to build the theme.
 
-#### With npm and Parcel
+The theme also use the slim LESS library [coeur-de-fer](https://github.com/wizhou/coeur-de-fer), with helpers functions and vendors support mixins, as well as a browser reset sheet. It's included as submodule of the project. You will need to load the submodule in order to build the theme. If you havn't alreay, steps to do so are explained in the [Intstallation](#for-developpement--configuration) section.
+
+### With npm and Parcel
 
 First, install **npm** and **parcel** if you haven't already. To install npm, you first need to install **node** using the node.js [installer](https://nodejs.org/en/), npm is installed as a part of it.
 
@@ -195,7 +218,9 @@ npm run build
 
 By the way, **Parcel** configurations can be found inside `package.json`.
 
-#### Build with Less.js
+****
+
+### Build with Less.js
 
 You can also build the theme directly with [Less.js](http://lesscss.org/usage/), and do not need anything else.
 
@@ -212,7 +237,7 @@ lessc src/style.less dist/style.css
 
 If you choose this solution, you will need to find a CSS minifier as it don't come natively with less.js.
 
-#### Build with a text editor
+### Build with a text editor
 You can also build the project with any text editor plugin that compile LESS. However, you will be in charge of placing the compiled CSS file inside its folder as follow: `/dist/style.css`.
 
 ## Contributing
@@ -221,6 +246,7 @@ Contributing is appreciated, and the theme can be improved in many ways. Please 
 
 
 ### To do:
+- The installation wizard is not yet supported.
 - Clean the color composition and allow faster color changing.
 - Regroup some `media queries` declarations.
 - Gather similars declarations into `:extend()` to minify the file size.
