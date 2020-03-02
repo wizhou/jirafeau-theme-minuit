@@ -13,6 +13,15 @@ body {
 	min-height: 100vh;
 	padding: 0rem;
 	width: 100%;
+	/* Pass this in mainscourtes
+	more details : https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/ */
+	word-break: break-word;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
 
 	@media screen and (max-width: @mobile-md) {
 		.align-items(flex-start);
