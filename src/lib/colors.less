@@ -1,0 +1,50 @@
+/*----------- Colors -----------*/
+
+/**
+ * Primaire: Primary color, strong one.
+ * Mediante: Slightly lighted primary color.
+ * Sensible: Strongly faded primary color.
+ * Mineure: Very faded color, good for backgrounds.
+ */
+
+/*----------- Indentity colors -----------*/
+
+/* Green color */
+@primary-majeure: #5ea;
+@primary-mediante: #7fffd4;
+@primary-sensible: fade(@primary-mediante, 30%);
+@primary-mineure: lighten(hardlight(@red-majeure, @primary-majeure), 25%);
+
+/* Blue color */
+@secondary-majeure: #71d1ed;
+@secondary-mediante: lighten(@secondary-majeure, 15%);
+@secondary-sensible: fade(@secondary-majeure, 30%);
+@secondary-mineure: fade(@secondary-sensible, 20%);
+
+/*----------- App Colors -----------*/
+
+/* Text colors */
+@text-majeure: #212223;
+@text-mediante: #333;
+@text-blue-sombre: darken(@secondary-majeure, 40%);
+@text-blue-majeure: darken(@secondary-majeure, 30%);
+@text-blue-mediante: darken(@secondary-majeure, 20%);
+
+/* Black colors */
+@black: #272632; // Color of the background
+@black-mediante: #323236;
+@black-sensible: #7a7a7a;
+
+/* Grey colors */
+@grey-majeure: lighten(@black-sensible, 20%);
+@grey-mediante: lighten(@black-sensible, 40%);
+@grey-sensible: lighten(@black-sensible, 60%);
+@grey-mineure: #eeeeee;
+
+/* red colors */
+@red-majeure: #de1f1c;
+@red-mediante: #fa5c1a;
+
+/* Events colors */
+@success: @primary-mineure;
+@error: lighten(hardlight(@primary-majeure, @red-mediante), 30%);

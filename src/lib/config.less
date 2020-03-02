@@ -1,0 +1,61 @@
+/*----------- Options -----------*/
+/* Set to true if you want to show the
+file limit upload size, false to hide it. */
+@show-config-max-upload-size: false;
+/* Set to true if you want to show the
+file limit download size, false to hide it. */
+@show-config-max-download-size: false;
+
+/*=============================================>>>>>
+= Design configuration =
+===============================================>>>>>*/
+/**
+ * Modify it if you wish to change the theme design,
+ * leave it be overwise.
+ */
+
+/*----------- Note -----------*/
+
+/**
+ * About fonts : as Jirafeau is using
+ * css imported in a php file, fonts urls needs to be
+ * absolute. To avoid to download all of them in the
+ * theme root folder and keep them organised,
+ * their respective css files are directly linked
+ * in the <style.css.php> file. If you wish to change fonts
+ * you will need to modify them there before changing
+ * the config values here.
+ */
+
+/*----------- Typography -----------*/
+
+/* Name of the font used in the theme. */
+@font-family: 'IBM Plex Mono', 'Lucida Console', 'Andale Mono', 'Consolas', monospace;
+/* The name of the icons font. */
+@icons: 'icomoon';
+/* Change to modify the positionning base ratio */
+@base-font-size: 16px;
+/* Used for fonts and small text. */
+@milli: 1em * 14 / @base-font-size;
+/* Used for big text. */
+@mega: 1em * 18 / @base-font-size;
+
+/*----------- Positionnements -----------*/
+
+/* Base heights of inputs and rows */
+@input-height: 40 * 1rem / 16;
+/* Base padding use for all elements. */
+@base-padding: 0.6em 0.8em;
+/* Same base padding, but based on relative font size. */
+@base-padding-relative: 0.6rem 0.8rem;
+/* Base border radius of all elements. */
+@border-radius: 0.2rem;
+/* Base outilne for focused elements */
+@outline: 1px solid lighten(@black-sensible, 40%);
+
+/*----------- MediaQueries -----------*/
+
+/* Big mobile size */
+@mobile-md: 800px;
+/* Small mobile size */
+@mobile-sm: 450px;

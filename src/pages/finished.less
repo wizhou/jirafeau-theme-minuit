@@ -1,0 +1,191 @@
+div#upload_finished {
+	margin: 0em !important;
+
+	/*----------- File loaded -----------*/
+
+	> p {
+		&:extend(.message-box);
+		border-bottom: 1px solid @grey-mediante;
+		border-top: 1px solid @grey-majeure;
+		.icon-before(@check, 0.4rem, 0.1rem);
+
+		@media screen and (min-width: @mobile-sm) {
+			margin-top: -1rem;
+		}
+	}
+
+	/*----------- Links -----------*/
+
+	div {
+		border-bottom: 1px solid @grey-mediante;
+		padding: 1rem;
+
+		/* Apply backgrounds colors
+		to each divs, but not to the validity
+		div which has its own style. */
+
+		&:nth-child(odd):not(#upload_validity) {
+			background-color: @grey-mineure;
+
+			code {
+				background-color: white;
+				color: @text-blue-majeure;
+
+				&:focus,
+				&:hover {
+					background-color: lighten(@primary-majeure, 35%);
+				}
+			}
+		}
+
+		/*----------- Labels -----------*/
+
+		> p > a {
+			font-weight: 700;
+		}
+
+		&#upload_finished_download_page {
+			p:first-of-type {
+				.icon-before(@save, 0.4rem);
+			}
+		}
+
+		&#upload_finished_preview {
+			p:first-of-type {
+				.icon-before(@eye, 0.4rem);
+			}
+		}
+
+		&#upload_direct_download {
+			p:first-of-type {
+				.icon-before(@download, 0.4rem);
+			}
+		}
+
+		&#upload_delete {
+			p:first-of-type {
+				.icon-before(@trash, 0.4rem);
+			}
+		}
+
+		&#upload_validity {
+			p:first-of-type {
+				.icon-before(@info, 0.4rem, 0.15rem);
+			}
+		}
+
+		/*----------- Email button -----------*/
+
+		#upload_link_email {
+			&:extend(.button all);
+			border: 1px solid @grey-mineure;
+			.border-radius(50%);
+			height: 2rem;
+			padding: 0.6em;
+			width: 2rem;
+
+			.icon-before(@mail, 0rem, 0rem);
+
+			&:hover,
+			&:focus {
+				background-color: @grey-mineure;
+				text-decoration: none;
+			}
+
+			img {
+				display: none;
+			}
+		}
+
+		/*----------- Label -----------*/
+
+		p:first-of-type {
+			margin-bottom: 1rem;
+			font-size: @milli;
+
+			> a:first-child {
+				border-bottom: 0px;
+				margin: 0rem;
+
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+				}
+			}
+
+			@media screen and (max-width: @mobile-md) {
+				/* Size the legend to better contain the icon. */
+				.flex(nowrap, row, center);
+
+				#upload_link_email {
+					margin-left: 0.6rem;
+				}
+			}
+		}
+
+		/*----------- Code input -----------*/
+
+		p:last-of-type {
+			.flex(nowrap, 0, normal, 0, 0);
+
+			code {
+				background-color: fade(@primary-sensible, 15%);
+				border: 1px solid @grey-mediante;
+				border-right: 0px;
+				.border-radius-left-box(@border-radius);
+				color: @text-mediante;
+				cursor: text;
+				display: inline-block;
+				padding: @base-padding;
+				width: 100%;
+				.transition(all 0.3s ease);
+				word-break: break-all;
+
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: @primary-sensible;
+				}
+			}
+
+			button {
+				&:extend(.button all, .primary all);
+				.border-radius-right-box(@border-radius);
+				font-size: 0px;
+				text-decoration: none;
+
+				&:hover,
+				&:focus {
+					text-decoration: none;
+				}
+
+				.icon-before(@scissors, 0rem, 0rem);
+				&:after {
+					font-size: 1em;
+				}
+			}
+		}
+	}
+
+	div#upload_validity {
+		background-color: @black-sensible;
+		border: 0px;
+		color: white;
+		font-size: @milli;
+		font-style: italic;
+		font-weight: 700;
+		margin-bottom: -1rem;
+
+		#date {
+			color: @primary-mediante;
+		}
+
+		p {
+			display: inline;
+		}
+
+		@media screen and (max-width: @mobile-sm) {
+			margin-bottom: 0rem !important;
+		}
+	}
+}

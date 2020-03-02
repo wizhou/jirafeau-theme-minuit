@@ -1,0 +1,113 @@
+.login:not(#submit_delete_post):not(#submit_post) {
+	fieldset {
+		border: 0px;
+		margin: 0px;
+		padding: 0.4em 0em;
+	}
+
+	.field input {
+		/* Add the basic input style to
+		the password input. */
+		.text-input();
+		margin: 0em;
+		position: relative;
+
+
+		&:focus,
+		&:active {
+			z-index: 2;
+		}
+	}
+
+	tbody {
+		.flex(nowrap, row, center, center);
+		position: relative;
+
+		tr {
+			display: block;
+			position: relative;
+
+
+			td {
+				display: block;
+				width: 100%;
+			}
+
+			/* Styles for the label. */
+			&:first-child {
+				font-size: @milli;
+				font-style: italic;
+				left: 1em;
+				position: absolute;
+				white-space: nowrap;
+				z-index: 1;
+
+				label {
+					.icon-before(@lock, 0.4rem);
+				}
+			}
+
+			/* Styles for the input */
+			&:nth-child(2) {
+				flex-grow: 1;
+
+				td {
+					padding-right: 0.6em;
+				}
+
+				input {
+					color: @black-mediante;
+
+					&:hover {
+						background-color: darken(@grey-mineure, 1%);
+					}
+
+					&:focus {
+						background-color: darken(@grey-mineure, 2%);
+						font-style: normal;
+					}
+				}
+			}
+
+			/* Style for the conect button. */
+			&:last-child {
+				input[type='submit'] {
+					&:extend(.button, .primary);
+					height: @input-height;
+
+					&:focus {
+						.box-shadow(
+							0px 0px 1px 1px lighten(@primary-majeure, 5%)
+						);
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		margin: 1rem;
+
+		fieldset {
+			padding-top: 0rem;
+		}
+
+		tbody {
+			display: block;
+
+			tr {
+				/* Styles for the label. */
+				&:first-child {
+					left: 0rem;
+					margin: 0rem 0rem 0.8rem;
+					position: relative;
+				}
+
+				/* Style for the conect button. */
+				&:last-child {
+					margin-top: 0.8rem;
+				}
+			}
+		}
+	}
+}

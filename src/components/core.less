@@ -1,0 +1,191 @@
+body {
+	.font-smoothing();
+	background: @black;
+	border: 1rem solid @black;
+	box-sizing: border-box;
+	color: @text-majeure;
+	font-family: @font-family;
+	font-size: 16px;
+	font-weight: 400;
+	.centered();
+	line-height: 1.2;
+	margin: 0rem;
+	min-height: 100vh;
+	padding: 0rem;
+	width: 100%;
+
+	@media screen and (max-width: @mobile-md) {
+		.align-items(flex-start);
+	}
+}
+
+/*----------- Base Elements -----------*/
+
+a {
+	border-bottom: 2px solid @grey-mineure;
+	color: @text-mediante;
+	display: inline-block;
+	margin-top: 1em;
+	text-decoration: none;
+	.transition(all 0.3s ease);
+
+	&:hover,
+	&:focus {
+		border-bottom: 2px solid @primary-majeure;
+	}
+}
+
+code {
+	background-color: rgba(127, 255, 212, 0.4);
+	padding: 0.4em;
+	border: 1px solid #bababa;
+
+	&:hover, &:focus {
+		border: 1px solid #7fffd4;
+	}
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+input {
+	height: @input-height;
+}
+
+/* Submit buttons */
+input[type="submit"] {
+	&:extend(.button all);
+}
+
+/*----------- Wrapper / Content -----------*/
+
+div#content {
+	background-color: white;
+	border-bottom: 1px solid darken(@grey-mineure, 5%);
+	border-radius: 0.2em;
+	border-right: 1px solid @black-sensible;
+	.box-shadow(0px 0px 0.1em 0.1em darken(@black, 5%));
+	margin: auto;
+	max-width: 720px;
+	position: relative;
+	width: 100%;
+
+	@media screen and (max-width:@mobile-md) {
+		max-width: 400px;
+	}
+
+	/* Fix content sizing */
+	* {
+		box-sizing: border-box;
+	}
+
+	/*----------- Header -----------*/
+
+	/**
+	* This heading is styling the "header bar" of the app.
+	* Keeping it this way because 	it's the only <h1>
+	* and doesn't have any class name. The over selection
+	* it's only to be sure to select the good heading.
+	*/
+
+	> h1:first-of-type {
+		background-color: @primary-majeure;
+		border-bottom: 1px solid darken(@primary-majeure, 5%);
+		.border-radius-top-box(@border-radius);
+		border-top: 1px solid @primary-mediante;
+		box-shadow: 1px;
+		color: white;
+		font-size: @milli;
+		font-style: italic;
+		font-weight: 700;
+		margin-bottom: 1em;
+		margin-top: 0px;
+		padding: 0.9rem 1.2rem;
+		position: relative;
+
+		.gradient-after(
+			linear;
+			fade(white, 20%),
+			fade(white, 0%);
+			45deg;
+		);
+
+		a {
+			border-bottom: 0px;
+			color: @black-mediante;
+			margin-top: 0em;
+			position: relative;
+			text-decoration: none;
+			z-index: 2;
+
+			&:hover,
+			&:focus {
+				color: darken(@black, 20%);
+				text-decoration: underline;
+			}
+		}
+
+		@media screen and (max-width: @mobile-sm) {
+			margin-bottom: 0rem;
+		}
+	}
+
+	/*----------- Base container -----------*/
+
+	> div,
+	.login {
+		margin: 1em;
+
+		@media screen and (max-width: @mobile-sm) {
+			margin: 0rem;
+		}
+	}
+
+	/*----------- Subsection comment block -----------*/
+
+
+	.message {
+		&:extend(.message-box);
+		border: 1px solid @grey-mineure;
+		border-radius: @border-radius;
+
+		@media screen and (min-width: @mobile-sm) {
+			margin: -1rem 0rem !important;
+		}
+	}
+
+	/*----------- Logout -----------*/
+
+	.logout {
+		font-size: @milli;
+		margin-top: 1rem;
+		padding-left: 0.2em;
+		.icon-before(@power, 0rem, 0.2rem);
+
+		@media screen and (max-width: @mobile-sm) {
+			margin: 1rem;
+		}
+	}
+
+	/*----------- Copyright -----------*/
+
+	div#copyright {
+		border-top: 1px solid @grey-mineure;
+		padding-top: 1rem;
+
+		p {
+			font-size: 0.8em;
+		}
+
+		a {
+			display: inline;
+		}
+
+		@media screen and (max-width: @mobile-sm) {
+			margin: 0rem !important;
+			padding: 1rem;
+		}
+	}
+}

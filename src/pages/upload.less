@@ -1,0 +1,305 @@
+/* The upload box. */
+
+div#upload {
+
+	fieldset {
+		border: 1px solid @grey-mineure;
+		border-radius: @border-radius;
+		margin: 0px;
+		.transition(all 0.3s ease);
+
+		/*----------- Header -----------*/
+
+		legend {
+			&:extend(.fieldset-legend all, .fieldset-legend.grey);
+			.icon-before(@package, 0.4rem, 0.1rem);
+		}
+
+		/*----------- File Select -----------*/
+
+		/* Not much further styling possible with
+		the base button. */
+
+		input[type="file"] {
+			cursor: pointer;
+			display: block;
+			font-family: @font-family;
+			font-size: @milli;
+			height: auto;
+			outline: none;
+			padding: 1rem 0.8rem;
+			width: 100%;
+			.transition(all 0.3s ease);
+			color: @black-sensible;
+
+			&:hover,
+			&:focus {
+				background-color: lighten(@primary-majeure, 30%);
+				.box-shadow(inset 0px 0px 0px 1px @grey-sensible);
+			}
+
+			&:active {
+					background-color: lighten(@primary-majeure, 20%);
+			}
+		}
+
+		/*----------- Options Section -----------*/
+
+		#options {
+			background-color: @grey-mineure;
+			.border-radius-bottom-box(@border-radius);
+			.transition(all 1s ease);
+			font-size: @milli;
+			// max-height: 100vh;
+			max-height: 0px;
+			/* Brute force to override js rules,
+			only when a file is selected. */
+			.flex(wrap, column, inherit) !important;
+			overflow: hidden;
+			// .transition(all 1s ease);
+			.opacity(0);
+
+			&[style='display: block;'] {
+				max-height: 100vh;
+				//padding: 0px;
+					.opacity(1);
+
+				// > * {
+				// 	.opacity(1);
+				// }
+			}
+
+			// > * {
+			// 	.transition(all 1s ease);
+			// 	.opacity(0);
+			// }
+
+			/* Positions for bases elements. */
+			> p {
+				padding: 0rem 0.8rem;
+				width: 100%;
+			}
+
+			/* Style for max file size */
+
+			/**
+			 * With current configuration,
+			 * if no max file size is setted in
+			 * the config, an empty row will show.
+			 * Need to find a way to avoid it.
+			 */
+
+			.config:first-of-type
+			when (@show-config-max-upload-size = false) {
+				display: none;
+			}
+
+			.config {
+				&:extend(.label-flex);
+				border-bottom: 1px solid @grey-mediante;
+				border-radius: @border-radius;
+				color: @black-sensible;
+				font-size: @milli;
+				font-style: italic;
+				order: 1;
+				padding: 1rem 0.8rem;
+				.icon-before(@info, 0.8rem, 0.15rem);
+			}
+
+			/* This config line is hidden in that part,
+			because it's only used in the download section. */
+
+			.config#max_file_size {
+				display: none;
+				order: 2;
+			}
+
+			/*----------- Send Button -----------*/
+
+			/* Selecting the send button container. */
+			.config#max_file_size + p {
+				margin: 0.8rem 0rem;
+				order: 4;
+				.icon-before(@upload, 0.2rem);
+			}
+
+			input[type='submit']#send {
+				/* Bruteforce to override js styles. */
+				display: inline-block !important;
+				height: auto;
+
+				&:hover,
+				&:focus {
+					.box-shadow(
+						inset 0px 0px 0px 1px lighten(@black-sensible, 35%)
+					);
+					text-decoration: none;
+					background-color: lighten(@primary-majeure, 5%);
+				}
+			}
+
+			/*----------- Options table  -----------*/
+
+			#option_table {
+				order: 3;
+
+				tr {
+					border-bottom: 1px solid @grey-mediante;
+				}
+
+				td {
+					padding: 0.8rem;
+					width: 50%;
+				}
+
+				/*----------- One time download -----------*/
+
+				tr:first-of-type {
+					height: 51 * 1rem / 16;
+					padding: 1rem 0.8rem;
+
+					td:first-of-type {
+						.icon-before(@truck);
+						.flex(nowrap, row, center, 0);
+						width: 100%;
+					}
+
+					td:last-of-type {
+						position: relative;
+					}
+
+					input[type='checkbox'] {
+						.flex(nowrap, row, center, 0);
+						position: relative;
+						cursor: pointer;
+						height: 1rem;
+						width: 1rem;
+						.scale(1, 1);
+						.transition(
+							color 0.3s ease,
+							all 0.01s ease-out
+						);
+
+						.icon-before(@square, 0.2rem);
+
+						&::before {
+							/* Pass the icon box hover the hidding */
+							z-index: 2;
+						}
+
+						&::after {
+							/* Hide the browser default checkbox
+							whithout disabling it. */
+							background-color: @grey-mineure;
+							content: '';
+							display: block;
+							height: 1rem;
+							left: 0px;
+							position: absolute;
+							top: 0px;
+							width: 2rem;
+							z-index: 1;
+						}
+
+						&:hover,
+						&:focus {
+							color: @text-blue-mediante;
+						}
+
+						&:active {
+							.scale(0.9, 0.9);
+						}
+
+						&:checked {
+							color: @text-blue-majeure;
+							.icon-before(@check-square, 0.2rem);
+						}
+					}
+				}
+
+				/*----------- Password -----------*/
+
+				tr:nth-of-type(2) {
+					td:first-of-type {
+						.icon-before(@key);
+					}
+
+					#input_key {
+						&:extend(.text-input all);
+						background-color: lighten(@grey-mineure, 5%);
+						border: 1px solid @grey-mineure;
+						font-size: @milli;
+						font-style: normal;
+						margin: 0rem;
+						width: 100%;
+
+						&:hover {
+							background-color: white;
+						}
+					}
+				}
+
+				/*----------- Time limit  -----------*/
+
+				tr:last-of-type {
+					td:first-of-type {
+						.icon-before(@clock);
+					}
+
+					select {
+						&:extend(.text-input all);
+						background-color: lighten(@grey-mineure, 5%);
+						border: 1px solid @grey-mineure;
+						cursor: pointer;
+						font-size: @milli;
+						font-style: normal;
+						height: @input-height;
+						margin: 0rem;
+
+						&:hover {
+							background-color: white;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		margin: 0rem !important;
+		fieldset,
+		fieldset legend {
+			.border-radius(0rem);
+			/* Size the legend to better contain the icon. */
+			.flex(nowrap, row, center);
+
+			&:before {
+				margin-right: 0.8rem;
+			}
+		}
+
+		fieldset #options #option_table {
+			tr {
+				.flex(wrap);
+				padding: 0rem !important;
+				height: unset !important;
+
+				&:first-child {
+					.flex(nowrap);
+
+					td:last-child {
+						width: 3rem;
+					}
+				}
+
+				&:not(:first-child) td {
+					width: 100%;
+
+					&:first-child {
+						padding-bottom: 0rem;
+					}
+				}
+			}
+		}
+	}
+}

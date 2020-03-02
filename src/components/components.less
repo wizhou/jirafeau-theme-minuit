@@ -1,0 +1,250 @@
+/*----------- Base Text Input -----------*/
+
+.text-input {
+	background-color: @grey-mineure;
+	border: 0px;
+	border-radius: @border-radius;
+	color: darken(@secondary-majeure, 30%);
+	font-family: @font-family;
+	font-size: 1em;
+	font-style: italic;
+	margin: 1em 0em;
+	outline: 0px;
+	padding: @base-padding;
+	width: 100%;
+	.transition(all 0.3s ease);
+
+	&:focus {
+		.box-shadow(
+			inset 0px 0px 0px 1px lighten(@black-sensible, 35%)
+		);
+	}
+}
+
+/*----------- Error Element -----------*/
+
+.error-box {
+	&:extend(.text-input, .label-flex);
+	background-color: @error;
+	color: @red-majeure;
+	font-size: @milli;
+	font-weight: 700;
+	min-height: @input-height;
+	width: 100%;
+	.box-shadow(inset 0px 0px 1px 0px lighten(@red-mediante, 30%));
+	.icon-before(@alert, 0.6rem, 0rem);
+
+	/* Make the icon look bigger on phone. */
+
+	@media screen and (max-width: @mobile-sm) {
+
+		&::before {
+			font-size: 2rem;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 1rem;
+		}
+	}
+}
+
+/*----------- Label element -----------*/
+
+/* The class is applied to elments with icons
+to make the icon take the left part
+of the text. */
+
+.label-flex {
+	.flex(nowrap, row, center);
+}
+
+/* This class is for most the page titles. */
+
+.label-heading {
+	&:extend(.text-input);
+	background-color: @secondary-mineure;
+	border: 1px solid @grey-mineure;
+	color: @text-majeure;
+	font-size: @mega;
+	font-style: normal;
+	font-weight: 700;
+	margin: -0rem -1rem 0rem;
+	padding: 1rem;
+	width: calc(100% + 2rem);
+
+	@media screen and (max-width: @mobile-sm) {
+		margin: 0rem;
+		width: 100%;
+	}
+}
+
+.message-box {
+	background-color: @secondary-mineure;
+	color: @black-mediante;
+	font-size: @milli;
+	font-weight: normal;
+	margin: 0rem;
+	padding: 1rem 1.2rem;
+	position: relative;
+}
+
+/*----------- Base Button -----------*/
+
+.button {
+	background-color: white;
+	border: 0px;
+	border-radius: @border-radius;
+	cursor: pointer;
+	font-family: @font-family;
+	font-size: @milli;
+	font-weight: 700;
+	height: auto;
+	line-height: 1;
+	margin: 0px;
+	padding: @base-padding-relative;
+	.transition(all 0.3s ease);
+
+	&:active {
+		color: @text-majeure;
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	&:focus {
+		.box-shadow(
+			inset 0px 0px 0px 1px lighten(@black-sensible, 35%)
+		);
+	}
+}
+
+/*----------- Button - Primary -----------*/
+
+.primary {
+	background-color: @black;
+	border: 1px solid @black-sensible;
+	color: @primary-majeure;
+
+	&:hover,
+	&:focus {
+		background-color: black;
+		color: @primary-mediante;
+	}
+
+	&:focus {
+		.box-shadow(0px 0px 1px 1px lighten(@primary-majeure, 5%));
+	}
+}
+
+/*----------- Button Secondary -----------*/
+
+.secondary {
+	background-color: white;
+	color: @black;
+
+	&:hover,
+	&:focus {
+		background-color: @primary-majeure;
+		color: @black;
+	}
+}
+
+/*----------- Mixins -----------*/
+
+/**
+ * This mixin allow to add an icon before an element.
+ *
+ * @name : Name of the icon, as defined in <icon.less>.
+ * @mr: margin right of the icon, for text positionning.
+ * @t: top of the icon, for vertical positionning.
+ *
+ * // WARNING: <input> doesn't take any <::before> or
+ * <::after> elements, so the buttons can't have an icon.
+ */
+
+.icon-before(@name, @mr: 0.6rem, @t: 0.05rem) {
+	&::before {
+		content: '@{name}';
+		font-family: @icons;
+		font-size: 1rem;
+		font-style: normal;
+		font-variant: normal;
+		/* Brute force to avoid the parent container
+		to modify the width of the icon. */
+		font-weight: normal !important;
+		margin-right: @mr;
+		position: relative;
+		speak: none;
+		text-transform: none;
+		top: @t;
+	}
+}
+
+/**
+ * This mixin add a gradient over an element.
+ * The after psoedo element will take all the space
+ * of the element and add a shiny lawer over it.
+ *
+ * // WARNING: The parent element MUST be in
+ *  <position: relative;>
+ *
+ * // WARNING: Any child will be unactive because
+ * of the gradient's position in the layers. To make them
+ * interactive again, they MUST have a z-index > 1;
+ */
+
+.gradient-after(@type; @colors; @dir) {
+	&::after {
+		content: '';
+		display: block;
+		height: 100%;
+		left: 0%;
+		position: absolute;
+		top: 0px;
+		width: 100%;
+		.gradient(@type; @colors; @dir);
+	}
+}
+
+/* This component style the legend element
+of the <fieldset>. They can be either green
+or grey. */
+
+.fieldset-legend {
+	border: 1px solid @grey-mineure;
+	border-bottom-color: @grey-mediante;
+	.border-radius-top-box(@border-radius);
+	color: @black-mediante;
+	font-size: @milli;
+	font-weight: normal;
+	margin: 0px -1px 0px -1px;
+	min-height: @input-height;
+	padding: @base-padding-relative;
+	position: relative;
+	width: calc(100% + 2px);
+
+	&.grey {
+		background-color: @grey-mineure;
+
+		.gradient-after(
+			linear;
+			fade(@grey-majeure, 10%),
+			fade(@primary-majeure, 0%);
+			left;
+		);
+	}
+
+	&.green {
+		background-color: @primary-sensible;
+
+		.gradient-after(
+			linear;
+			fade(@primary-majeure, 10%),
+			fade(@primary-majeure, 0%);
+			left;
+		);
+	}
+}

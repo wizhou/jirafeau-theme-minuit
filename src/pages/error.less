@@ -1,0 +1,35 @@
+div#content .error {
+	&:extend(.error-box all);
+	margin: 1.4rem 1rem;
+	position: relative;
+	width: auto;
+
+	> h2 {
+		background-color: unset;
+		border: 0px;
+		color: @red-mediante;
+		font-size: 1em;
+		margin: 0em;
+		padding: 0em;
+		width: unset;
+	}
+
+	> h2 + p {
+		color: @red-mediante;
+		font-style: italic;
+		margin-left: 1rem;
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		display: block;
+		margin: -1rem 0rem 0rem !important;
+		text-align: center;
+	}
+}
+
+@media screen and (max-width: @mobile-sm) {
+
+	#error_pop {
+		margin: -1rem 0rem 1rem !important;
+	}
+}

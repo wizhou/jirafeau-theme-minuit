@@ -1,0 +1,119 @@
+#submit_post.form {
+
+	fieldset {
+		border: 0px;
+		margin: -1rem 0rem 0rem;
+		padding: 0rem;
+	}
+
+	/*----------- File name -----------*/
+
+	legend {
+		&:extend(.label-heading all);
+		.icon-before(@save);
+
+		&::before {
+			font-size: @mega;
+		}
+	}
+
+	table {
+		font-size: @milli;
+
+		tr {
+
+			/* All the informations cells,
+			but not the downloads buttons data cells. */
+
+			&:not(:last-child) td {
+				/* Avoid to style twice the self destruct */
+				&:not(#self_destruct) {
+					&:extend(.text-input);
+					font-style: normal;
+					color: @text-blue-sombre;
+				}
+			}
+
+			/*----------- Donwload infos. -----------*/
+
+			&:first-of-type td {
+				&:extend(.label-flex);
+				.icon-before(@smile);
+			}
+
+			/*----------- Legals infos. -----------*/
+
+			&:nth-of-type(2) td {
+				a {
+					display: inline;
+				}
+			}
+		}
+
+		a {
+			margin: 0rem;
+		}
+	}
+
+	tr:last-of-type {
+		font-size: 1rem;
+
+		td {
+			margin-top: 1rem;
+		}
+
+		#submit_download {
+			margin-top: 1rem;
+			&:extend(.button all, .primary all);
+			.border-radius-left-box(@border-radius);
+		}
+
+		#submit_preview {
+			margin-top: 1rem;
+			&:extend(.button all, .secondary all);
+			.border-radius-right-box(@border-radius);
+			border: 1px solid @grey-mineure;
+		}
+	}
+
+	/*----------- Self-desctruction -----------*/
+
+	td#self_destruct {
+		margin-bottom: 0em;
+		&:extend(.error-box all);
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		fieldset {
+			margin: 0rem !important;
+		}
+
+		td {
+			margin: 0 !important;
+			padding: 1rem !important;
+
+			&::before {
+				display: none;
+			}
+		}
+
+		tr:last-of-type {
+			td {
+				.flex(wrap, column, center);
+			}
+
+			#submit_download,
+			#submit_preview {
+				.border-radius(@border-radius);
+			}
+
+			#submit_download {
+				margin-top: 0rem;
+			}
+
+			#submit_preview {
+				margin-top: 1rem;
+			}
+		}
+	}
+}

@@ -7,3 +7,11 @@ node_modules
 src/.cache
 /src/.cache
 /src/.cache/*
+.cache
+.cache/*
+presa
+presa/
+presa/*
+dist/*
+!dist/style.css
+!dist/style.css.map

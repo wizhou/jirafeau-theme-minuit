@@ -1,0 +1,296 @@
+
+h2 {
+	background-color: @grey-mineure;
+	border-top: 1px solid @grey-mediante;
+	color: @text-blue-majeure;
+	display: inline-block;
+	font-size: @milli;
+	font-style: italic;
+	font-weight: normal;
+	margin: 0rem;
+	margin-top: -1em;
+	padding: 1rem;
+	width: 50%;
+
+	@media screen and (max-width: @mobile-md) {
+		width: 100%;
+
+		&:last-of-type {
+			margin-top: 0rem;
+		}
+	}
+}
+
+div#admin {
+
+	fieldset {
+		border: 1px solid @grey-mediante;
+		.border-radius(@border-radius);
+		margin: 0rem;
+		padding: 0rem;
+		.transition(all 0.3s ease);
+
+		legend {
+			&:extend(.fieldset-legend all, .fieldset-legend.green);
+			.icon-before(@settings, 0.4rem, 0.1rem);
+		}
+
+		table {
+			background-color: @grey-mineure;
+
+			tbody {
+				display: block;
+			}
+
+			tr {
+				border-bottom: 1px solid @grey-mediante;
+				.flex(nowrap, row, baseline, space-between);
+
+
+				.info {
+					// &:extend(.label-flex);
+					.flex-grow(1);
+				}
+
+				/*----------- Clean old files -----------*/
+
+				&:first-of-type .info {
+				.icon-before(@trash);
+				}
+
+				/*----------- Clean old transfers -----------*/
+
+				&:nth-of-type(2) .info {
+					.icon-before(@wifi-off);
+				}
+
+				/*----------- List all filtes -----------*/
+
+				&:nth-of-type(3) .info {
+					.icon-before(@list);
+				}
+
+				/*----------- Search by name -----------*/
+
+				&:nth-of-type(4) .info {
+					.icon-before(@search);
+				}
+
+				/*----------- Search by hash -----------*/
+
+				&:nth-of-type(5) .info {
+					.icon-before(@tag);
+				}
+
+				/*----------- Search by link -----------*/
+
+				&:nth-of-type(6) .info {
+					.icon-before(@link);
+				}
+
+				td {
+					display: block;
+					font-size: @milli;
+					padding: 0.8rem;
+
+					&:last-child {
+						text-align: right;
+					}
+				}
+			}
+
+			input {
+				vertical-align: baseline;
+			}
+
+			input[type='text'] {
+				&:extend(.text-input all);
+				background-color: lighten(@grey-mineure, 5%);
+				border: 1px solid @grey-mineure;
+				font-size: @milli;
+				font-style: normal;
+				height: auto;
+				margin: 0rem;
+				width: 100%;
+
+				&:hover {
+					background-color: white;
+				}
+			}
+
+			input[type='submit'] {
+				&:extend(.button all);
+			}
+		}
+
+
+		/*----------- Logout -----------*/
+		/* Special styling for the admin logout. */
+
+		> form {
+			padding: @base-padding-relative;
+			.icon-before(@power, 0rem, 0.2rem);
+			font-size: @milli;
+		}
+	}
+
+	@media screen and (max-width: @mobile-md)
+	and (min-width: @mobile-sm) {
+		fieldset table tr:nth-last-of-type(-n+3) {
+			.flex-wrap(wrap);
+
+			.info {
+				padding-bottom: 0rem;
+				width: 100%;
+			}
+
+			td:nth-of-type(2) {
+				.flex-grow(1);
+				padding-right: 0rem;
+			}
+		}
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		margin: 0rem !important;
+
+		fieldset {
+			.border-radius(0rem);
+		}
+
+		fieldset table tr {
+			.justify-content(center);
+			.flex-wrap(wrap);
+
+			.info {
+				padding-bottom: 0rem;
+			}
+
+			td {
+				width: 100%;
+			}
+
+			td:nth-of-type(2) {
+				.flex-grow(1);
+				padding-bottom: 0rem;
+				padding-right: 0.8rem;
+			}
+
+			td:last-of-type {
+				text-align: center;
+			}
+		}
+	}
+
+	+ .message {
+		margin: 1rem !important;
+	}
+}
+
+
+/*----------- File listing -----------*/
+
+h2 + div + fieldset {
+	background-color: white;
+	border: 1px solid @grey-mineure;
+	.border-radius(@border-radius);
+	margin: 1rem;
+	position: relative;
+
+	legend {
+		&:extend(.fieldset-legend all, .fieldset-legend.green);
+		.icon-before(@save, 0.4rem, 0.1rem);
+	}
+
+	table {
+		box-sizing: border-box;
+		display: block;
+		margin: 0rem;
+		overflow-x: auto;
+		width: 688px;
+
+		tbody {
+			font-size: 0.8em;
+			white-space: nowrap;
+
+			/*----------- Rows -----------*/
+
+			tr {
+				&:nth-child(odd) {
+					background-color: fade(@primary-sensible, 20%);
+				}
+
+				&:nth-child(even) td:nth-child(even) {
+					background-color: fade(@grey-mineure, 25%);
+				}
+			}
+
+			/*----------- Headers -----------*/
+
+			th {
+				background-color: @secondary-mediante;
+				border-right: 1px solid fade(@grey-majeure, 20%);
+				padding: @base-padding;
+			}
+
+			/*----------- Cells -----------*/
+
+			td {
+				border: 1px solid @grey-mineure;
+				padding: @base-padding;
+				vertical-align: middle;
+
+				&:first-child {
+					border-left: 0px;
+					min-width: 20em;
+					white-space: normal;
+					word-break: break-all;
+				}
+
+				&:last-child {
+					border-right: 0px;
+				}
+
+				a {
+					margin: 0rem;
+					display: inline;
+				}
+
+				input {
+					font-size: 12px !important;
+					margin-bottom: 0.6em !important;
+				}
+
+				/*----------- Actions -----------*/
+				/* Buttons are inside forms. */
+
+				form {
+					display: inline-block;
+					margin-right: 1rem;
+
+					&:last-of-type {
+						margin-right: 0rem;
+					}
+
+					input {
+						&:extend(.button all, .secondary all);
+						border: 1px solid @grey-mediante !important;
+					}
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: @mobile-md) {
+			table {
+				width: 368px;
+			}
+	}
+
+	@media screen and (max-width: @mobile-sm) {
+		margin: 0rem !important;
+			table {
+				width: calc(100vw - 3rem - 2px);
+			}
+	}
+}

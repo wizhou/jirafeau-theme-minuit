@@ -1,0 +1,42 @@
+#uploading {
+	.flex(wrap, row, center, space-evenly);
+
+	@media screen and (min-width: @mobile-sm) {
+		margin-top: -1rem !important;
+	}
+
+	> p:first-child {
+		.icon-before(@loader);
+		&:extend(.label-heading all);
+
+		&::before {
+			font-size: @mega;
+			.animation(rotate, 3s, infinite 0s, linear);
+		}
+	}
+
+	> p:last-child {
+		display: none;
+	}
+
+	#uploaded_percentage,
+	#uploaded_speed,
+	#uploaded_time {
+		margin-top: 1rem;
+		// width: 100% / 3;
+		font-size: @milli;
+	}
+
+	#uploaded_percentage {
+		.icon-before(@package);
+	}
+
+	#uploaded_speed {
+		.icon-before(@truck);
+	}
+
+	#uploaded_time {
+		.icon-before(@clock);
+
+	}
+}

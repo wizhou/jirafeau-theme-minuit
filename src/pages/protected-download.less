@@ -1,0 +1,44 @@
+#submit_post.form.login {
+	margin: 0rem !important;
+	&:extend(.form all);
+
+	legend {
+		.icon-before(@lock);
+		&:extend(.label-heading all);
+
+		&::before {
+			font-size: @mega;
+		}
+	}
+
+	table  tr:first-of-type td {
+		.icon-before(@key);
+
+		input[type='password'] {
+			&:extend(.text-input all);
+			background-color: lighten(@grey-mineure, 5%);
+			border: 1px solid @grey-mineure;
+			font-size: @milli;
+			font-style: normal;
+			margin: 0rem;
+			width: 100%;
+		}
+
+		@media screen and (max-width: @mobile-md) {
+			.flex-wrap(wrap);
+			&::before {
+				display: none;
+			}
+
+			input[type='password'] {
+				margin: 0.8rem 0rem 0rem;
+			}
+
+		}
+	}
+
+	/* Self-desctruction */
+	td#self_destruct {
+		margin-bottom: 0rem;
+	}
+}

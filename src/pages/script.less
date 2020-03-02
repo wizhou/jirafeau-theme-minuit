@@ -1,0 +1,16 @@
+#content .info {
+
+	@media screen and (min-width: @mobile-sm) {
+		margin-top: -1rem !important;
+	}
+
+	h2 {
+		.icon-before(@info);
+		&:extend(.label-heading all);
+		margin-bottom: 1em;
+
+		&::before {
+			font-size: @mega;
+		}
+	}
+}
