@@ -1,32 +1,43 @@
 # Jirafeau Minuit Theme
 
-This is a theme for [Jirafeau](https://gitlab.com/mojo42/Jirafeau), an Open-Source software that allow to easely upload files and share them with a link.
+This is a theme for [Jirafeau](https://gitlab.com/mojo42/Jirafeau), an Open-Source software that allow to easily upload files and share them with a link.
 
 The theme is **dark and minty**, and designed to give the software a *modern look*. It's written in LESS and can be simply modified according to your needs.
 
+![Jirafeau upload page with minuit theme](https://minuit-collectif.com/screenshots/share/upload_finished.png)
+
 ## Screenshots
+
+- [Login](https://minuit-collectif.com/screenshots/share/login.png)
+- [Admin interface](https://minuit-collectif.com/screenshots/share/admin.png)
+- [Admin files list](https://minuit-collectif.com/screenshots/share/list-file.png)
+- [Upload](https://minuit-collectif.com/screenshots/share/upload.png)
+- [Upload progess](https://minuit-collectif.com/screenshots/share/progress.png)
+- [Download file](https://minuit-collectif.com/screenshots/share/download.png)
+- [Password download file](https://minuit-collectif.com/screenshots/share/password-protected.png)
+- [Delete file](https://minuit-collectif.com/screenshots/share/delete.png)
 
 ## Main features
 
 - **Simple** and **modern** look
-- Distincive **colors**
+- Distinctive **colors**
 - Is *responsive* and works both on **desktop** and **mobile***
-- Can easely be **improved** or **modified**
-- Use the beautifull **icons** from [Feather](https://feathericons.com/) to be more friendly and appealling.
-- Display texts and informations with **distinction and readabillity** thanks to the [IBM Plex Mono](https://github.com/IBM/plex/tree/v4.0.2) font.
+- Can easily be **improved** or **modified**
+- Use the beautiful **icons** from [Feather](https://feathericons.com/) to be more friendly and appealing.
+- Display text and information with **distinction and readability** thanks to the [IBM Plex Mono](https://github.com/IBM/plex/tree/v4.0.2) font.
 
-** Read the [configuration](#configuration) section to enable compatibility to mobile.*
+\* *Read the [configuration](#enable-mobile-compatibility) section to enable compatibility to mobile.*
 
 ## Requirements
 
 You will need a working installation of **Jirafeau** to use the theme. It's quite simple and all is explained in the [Jirafeau documentation](https://gitlab.com/mojo42/Jirafeau#installation).
 
 - **System requirements** are the same as for the Jirafeau software.
-- The theme use **CSS3**.
-- The theme use **webfonts**
+- The theme uses **CSS3**.
+- The theme uses **web-fonts**
 - Work on all modern browsers that support the **CSS Flexible Box Layout Module** — all are listed in the [Can I use](https://caniuse.com/#feat=flexbox) website.
 
-The theme come already builded as a CSS file, but you can re-compile it with any LESS compiler. More information about building in the [Contributing](#contributing) section.
+The theme come already built as a CSS file, but you can re-compile it with any LESS compiler. More information about compiling in the [Building](#building) section.
 
 ## Installation
 
@@ -37,7 +48,7 @@ cd <your jirafeau path>
 git clone https://github.com/wizhou/jirafeau-theme-minuit.git media/minuit
 ````
 
-Once this is done, go to `lib/config.local.php` and change the following lines :
+Once this is done, go to `lib/config.local.php` and change the following lines:
 
 ````
 $cfg = array (
@@ -50,25 +61,25 @@ Then, **Jirafeau** will automatically link the theme file `style.css.php` as the
 
 ## Configuration
 
-The theme can be configured in multiples ways, either to change it's look or to enable differents features.
+The theme can be configured in multiples ways, either to revise it's look or to enable different features.
 
-Most of the theme base elements, as **units**, **colors** and **font** are declared as **LESS variables** inside `src/lib/config.less`. You may modify any of them to make the theme look as you wish, and the file is commented with this idea.
+Most of the theme base elements, **units**, **colors** and **font**, are declared as **LESS variables** inside `src/lib/config.less`. You may modify any of them to make the theme look as you wish, and the file is commented that way.
 
-You will need to re-compile the **LESS file** `src/style.less` into a **CSS file** to make the changes append. Any less compiler can be used to do so, but the end file must be placed and named as follow : `dist/style.css`. You can find more informations about building in the [Contributing](#contributing) section.
+You will need to compile the **LESS file** `src/style.less` into a **CSS file** to make the changes append. Any LESS compiler can be used to do so, but the end file must be placed and named as follow: `dist/style.css`. You can obtain more informations about compiling in the [Building](#building) section.
 
 ### Enable mobile compatibility
 
-The theme use *responsive web design* and work well in mobile or tablet displays. However, **Jirafeau** is not configurated to be usable on phone by default and lack a `viewport`configuration. You must enable it by yourself.
+The theme uses *responsive web design* and work well in mobile or tablet displays. However, **Jirafeau** is not configured to be usable on phone by default and lack a `viewport` configuration. You must enable it by yourself.
 
-To do so, go to `lib/template/header.php` of your **Jirafeau** installation, and add this line just below the `<head>` opening tag.
+To do so, go to `lib/template/header.php` of your **Jirafeau** installation and add this line just below the `<head>` opening tag.
 
 ````
-<?php /* Add this line to enable mobile use ! */ ?>
+<?php /* Add this line to enable mobile use! */ ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ````
 
 ### Hide / Show File max size
-If you don't use any **upload size limitiation** in your Jirafeau installation, you can hide its text row by setting the following variable to `false` inside `src/lib/config.less`.
+If you don't use any **upload size limitations** in your Jirafeau installation, you can hide its text row by setting the following variable to `false` inside `src/lib/config.less`.
 
 ````
 @show-config-max-upload-size: false;
@@ -76,18 +87,18 @@ If you don't use any **upload size limitiation** in your Jirafeau installation, 
 
 ### Change font
 
-**Minuit** theme use the [IBM Plex Mono](https://github.com/IBM/plex/tree/v4.0.2) font in *regular* and *bold* to display texts. The font is installed inside the theme `assets/fonts` and linked inside the `style.css.php` file.
+**Minuit** theme uses [IBM Plex Mono](https://github.com/IBM/plex/tree/v4.0.2) font in *regular* and *bold* to display texts. The font is installed in `assets` folder and linked inside `style.css.php` file.
 
-There is two ways you can add a new font to the theme :
+There are two ways you can add a new font to the theme:
 
 #### Hosted font
 
 You can import any **hosted font** you like by loading it's stylesheet directly inside the `style.css.php` file.
 
-First, remove the link of the theme font :
+First, remove the link of the theme font:
 
 ````
-require_once __DIR__ . '/assets/fonts/ibm-plex-mono.css';
+require_once __DIR__ . '/assets/ibm-plex-mono.css';
 ````
 
 Then, add this line after the php closings.
@@ -107,68 +118,68 @@ Then, re-compile the **LESS** file `src/style.less` into the CSS file `dist/styl
 
 #### Installed font
 
-You can **install** a font on your own installation by following a few extra steps :
+You can **install** a font on your own installation by following a few extra steps:
 
-- **Download** a font, preferably an open source one, or any you bought and wishe to use. You can find some on [Velvetyne](http://www.velvetyne.fr/) website, [Open Font Library](https://fontlibrary.org/en/font/avara), or even [Google Fonts](https://fonts.google.com/).
-- Either the font already come with a **bundle** for web use, or you will need to build your own if the fonts allows you to (check its *license* to know). You can use any [Webfont Generator](https://duckduckgo.com/?q=webfont+generator&ia=web) you want, and there is plenty of them over the internet.
-- Locate the font insde the `assets/fonts` folder. To keep it simple, you can name the folder containing the font's files with the name of the font, like this : `assets/fonts/my-web-font`.
-- Your bundle might have come with a **CSS file** linking your font with a `@font-face` declaration, if not, you will need to make your own. Here is an [article from CSS Tricks](https://css-tricks.com/snippets/css/using-font-face/) explaining how. Te be consitent with the font's folder name, you can name this file `my-web-font.css` and locate it at the root of `/assets/fonts`. Inside the `@font-face` declaration, the paths to your font's file will then have to look like this :
+- **Download** a font, preferably an open source one, or any you bought and wish to use. You can find some on [Velvetyne](http://www.velvetyne.fr/) website, [Open Font Library](https://fontlibrary.org/en/font/avara), or even [Google Fonts](https://fonts.google.com/).
+- Either the font already come with a **bundle** for web use, or you will need to build your own if the fonts allow you to (check its *license* to know). You can use any [Web-font Generator](https://duckduckgo.com/?q=webfont+generator&ia=web) you want.
+- Locate the font inside `assets` folder. To keep it simple, you can name the folder containing the font's files with the name of the font, like this: `assets/my-web-font`.
+- Your bundle might have come with a **CSS file** linking your font with a `@font-face` declaration, if not, you will need to make your own. Here is an [article from CSS Tricks](https://css-tricks.com/snippets/css/using-font-face/) explaining how. Te be consistent with the font's folder name, you can name this file `my-web-font.css` and locate it in `assets` folder. Inside the `@font-face` declaration, the paths to your font's files will then have to look like this:
 ````
-src: url('<my-web-font>/<my-web-font>.woff'),
+src: url('assets/<my-web-font>/<my-web-font>.woff'),
 ````
-- Then, go to `style.css.php` and change the **path** of the following line to location of your font CSS file :
+- Then, go to `style.css.php` and change the **path** of the following line to the **location** of your font CSS file:
 ````
 // From
-require_once __DIR__ . '/assets/fonts/ibm-plex-mono.css';
+require_once __DIR__ . '/assets/ibm-plex-mono.css';
 // To
-require_once __DIR__ . '/assets/fonts/<my-web-font>.css';
+require_once __DIR__ . '/assets/<my-web-font>.css';
 ````
-- After this, go to `src/lib/config.less` and change the value of this **variable** to the name of your font.
+- After this, go to `src/lib/config.less` and change the value of the `@font-family` **variable** to the name of your font.
 
 	`````
 	@font-family: '<My web font>';
 	`````
 
-- Finally, re-compile the **LESS** file `src/style.less` into the CSS file `dist/style.css`.
+- Finally, compile the **LESS** file `src/style.less` into the CSS file `dist/style.css`.
 
 ### Change colors
 
-**Minuit** theme use green and blue colors defined in **LESS variables**. If you wish to change the colors of the theme, you can do so in the file `src/lib/colors.less`
+**Minuit** theme uses green and blue colors defined as **LESS variables**. If you wish to change the colors of the theme, you can do so in the file `src/lib/colors.less`
 
-The green colors are defined with the `@primary-` variables, and the blue colors are definied with the `@secondary-` variables.
+The green colors are defined as `@primary-` variables, and the blue colors are defined as `@secondary-` variables.
 
-The **variables** are organised with like this :
+The **variables** are organized with like this:
 
 ````
 @primary-majeure: Strong main color.
 @primary-mediante: Regular color
-@primary-sensible: Ligth color, for borders and hover
-@primary-mineure: Extra-Ligth color, for backgrounds
+@primary-sensible: Light color, for borders and hover
+@primary-mineure: Extra-Light color, for backgrounds
 ````
 
-You might play as you like with these definition. Right now there is still a lot of hard coded base colors. In a future release, there will be more use of LESS color channel functions to allow quicker and smoother changings of the theme colors.
+You may play with these definitions. Right now there is still a lot of hardcoded base colors. In a future release, there will be more use of LESS color channel functions to allow quicker and smoother modifying of theme colors.
 
 ## Building
 
-**Minuit** theme is written in [Less](http://lesscss.org/) in 3.11.1. It use [Parcel](https://parceljs.org/) as a compiler and a **CSS** minifier, and [npm](https://www.npmjs.com/) to make it run. However, this setup is more a comfort than a need for the project. You can use any LESS compiler you like to build the theme.
+**Minuit** theme is written in [Less](http://lesscss.org/) in 3.11.1. It uses [Parcel](https://parceljs.org/) as a compiler and a **CSS** minifier, and [npm](https://www.npmjs.com/) to make it run. However, this setup is more a comfort than a need for the project. You can use any LESS compiler you like to build the theme.
 
 #### With npm and Parcel
 
 First, install **npm** and **parcel** if you haven't already. To install npm, you first need to install **node** using the node.js [installer](https://nodejs.org/en/), npm is installed as a part of it.
 
-Then, you can make sure you have the most recent version of npm by using npm :
+Then, you can make sure you have the most recent version of npm by using npm:
 ````
 npm install npm -g
 ````
 
-Then, install Parcel with npm :
+Then, install Parcel with npm:
 ````
 npm install -g parcel-bundler
 ````
 
-When both are installed, you can go to the **minuit theme** folder and run the following commands to compile the project
+When both are installed, you can go to `minuit` folder and run the following commands to compile the project
 
-Go to your jirafeau installation
+Go to the theme in your **jirafeau** installation:
 ````
 cd <path-to-your-jirafeau>/media/minuit
 ````
@@ -176,13 +187,13 @@ If for dev, use this command to ask **Parcel** to `watch` the project.
 ````
 npm run dev
 ````
-Then, to ask **Parcel** to `build` the theme as a minified CSS file, run this command :
+Then, to ask **Parcel** to `build` the theme as a minified CSS file, run this command:
 ````
 npm run build
 ````
-**Parcel** will take care to output the complied CSS file to the right place. It will aslo produce **source maps** by default, allowing an easy debugging and workflow.
+**Parcel** will take care to output the complied CSS file to the right place. It will also produce **source maps** by default, allowing an easy debugging and workflow.
 
-Also, the **Parcel** configurations can be found inside `package.json`.
+By the way, **Parcel** configurations can be found inside `package.json`.
 
 #### Build with Less.js
 
@@ -201,33 +212,33 @@ lessc src/style.less dist/style.css
 
 If you choose this solution, you will need to find a CSS minifier as it don't come natively with less.js.
 
-#### Build with text editor
-You can also build the project with any text editor plugin that compile LESS. However, you will be in charge of placing the compiled CSS file inside its folder as follow : `/dist/style.css`.
+#### Build with a text editor
+You can also build the project with any text editor plugin that compile LESS. However, you will be in charge of placing the compiled CSS file inside its folder as follow: `/dist/style.css`.
 
 ## Contributing
 
 Contributing is appreciated, and the theme can be improved in many ways. Please refer to `CONTRIBUTING.md` for more details.
 
 
-### To dos
-- Clean the color compositon and allow faster color changing.
+### To do:
+- Clean the color composition and allow faster color changing.
 - Regroup some `media queries` declarations.
-- Gather similars declarations into `extends` to minify the file size.
+- Gather similars declarations into `:extend()` to minify the file size.
 - Make a favicon
 - Insert the jirafeau logo inside the footer
 
 
 ## Help
 
-This theme has been tested in latest version of **Chrome**, **Firefox**, **Opera** and **Safari**, and **Chrome Android**, but not in Edge nor Safari iOS, but it should work on them.
+This theme has been tested in latest versions of **Chrome**, **Firefox**, **Opera** and **Safari**, and **Chrome Android**, but not in Edge nor Safari iOS, but it should work on them.
 
-If you find any bug, or if something feels quirky, please **open an issue** on the project.
+If you find any bug, or if something feels quirky, or if you have any question, please **open an issue** on the project.
 
 This theme doesn't change anything to **Jirafeau** software (outside of the mobile configuration explained above), so if you encounter any bug while using the software, please refer to [Jirafeau documentation](https://gitlab.com/mojo42/Jirafeau).
 
 ### Known bugs
 
-- The **login page** use `focus` and `z-index` layers to hide the label when the user is typing password. However, if the text input loose focus, the label re-appear over the input and can be confusing. It's actually quite hard to conter this behavior with only css and because of the way **Jirafeau** is builded.
+- The **login page** use `focus` and `z-index` layers to hide the label when the user is typing a password. However, if the text input loose focus, the label re-appear over the input and can be confusing. It's actually quite hard to counter this behavior with only css and because of the way **Jirafeau** is builded.
 
 
 ## Credits
@@ -242,4 +253,4 @@ This theme doesn't change anything to **Jirafeau** software (outside of the mobi
 - **This project** is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/).
 - **Jirafeau** is licensed under [GNU Affero General Public License](https://www.gnu.org/licenses/).
 - **Feather** is licensed under the [MIT License](https://github.com/colebemis/feather/blob/master/LICENSE).
-- **IBM Plex** is licensed uneder the [SIL Open Font License](http://scripts.sil.org/OFL).
+- **IBM Plex** is licensed under the [SIL Open Font License](http://scripts.sil.org/OFL).
